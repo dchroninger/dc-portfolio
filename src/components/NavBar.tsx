@@ -1,21 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
+import type {NavBarProps, NavItemProps} from "../types";
+import {scrollTo} from "../utils/scroll";
+import {useRouter} from "next/router";
 
-type NavItemProps = {
-  title: string;
-  path: string;
+const NavItem = ({title, hash}: NavItemProps) => {
+  const router = useRouter();
+  console.log(router.asPath)
+return (
+    <div className="hover:cursor-pointer"
+         onClick={()=>router.push({pathname: "/", hash: hash})}>
+      <h1 className="text-white">{title}</h1>
+    </div>
+  );
 }
-const NavItem = ({title, path}: NavItemProps) => (
-  <div className="hover:cursor-pointer" onClick={()=>console.log(path)}>
-  <h1 className="text-white">{title}</h1>
-  </div>
-);
 
-const NavBar = () => (
-<div className="fixed top-0 left-0 right-0 container flex justify-center gap-12 px-4 pt-4 ">
-  <NavItem title="Home" path="#"/>
-  <NavItem title="About" path="#about"/>
-  <NavItem title="Projects" path="#projects"/>
-  <NavItem title="Contact" path="#contact"/>
-</div>);
+export const NavBar = ({refs}: NavBarProps) => {
+  const path = useRouter().asPath;
+  useEffect(() => {
+    switch (path) {
+      case "/#home":
+        scrollTo(refs.home);
+        break;
+      case "/#about":
+        scrollTo(refs.about);
+        break;
+      case "/#contact":
+        scrollTo(refs.contact);
+        break;
+      case "/#projects":
+        scrollTo(refs.projects);
+        break;
+      default:
+        scrollTo(refs.home);
+    }
+  }, [refs.about, refs.contact, refs.home, refs.projects, path])
 
-export default NavBar;
+  return (
+    <div className="fixed flex items-center justify-center gap-12 px-4 pt-4">
+      <NavItem title="Home" hash="#home"/>
+      <NavItem title="About" hash="#about"/>
+      <NavItem title="Projects" hash="#projects"/>
+      <NavItem title="Contact" hash="#contact"/>
+    </div>)
+};

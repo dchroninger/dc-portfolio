@@ -1,7 +1,12 @@
-const About = () => (
-  <div className="h-screen w-full bg-blue-300">
-    <h1 className="text-white">About</h1>
-  </div>
-)
+import {forwardRef} from "react";
 
-export default About
+export const About = forwardRef<HTMLDivElement>((_,ref) => {
+  return (
+    <div ref={ref} className="h-screen w-full">
+      <div className="h-full w-full flex justify-center items-center">
+        <h1 className="text-6xl font-bold text-white">About Section</h1>
+      </div>
+    </div>)
+});
+
+About.displayName = "About";

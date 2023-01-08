@@ -1,14 +1,14 @@
 import {type NextPage} from "next";
 import Head from "next/head";
-import React from "react";
-import SocialsBar from "../components/SocialsBar";
-import NavBar from "../components/NavBar";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import Projects from "../components/Projects";
-import Contact from "../components/Contact";
+import React, {useRef} from "react";
+import {About, Contact, Hero, NavBar, Projects, SocialsBar} from "../components";
 
 const Home: NextPage = () => {
+  const homeRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
       <Head>
@@ -20,13 +20,18 @@ const Home: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest"/>
       </Head>
       <main
-        className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[rgba(63,76,119,1)] to-[rgba(32,38,57,1)]">
-        <NavBar/>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-        <SocialsBar/>
+        className="flex min-h-screen flex-col items-center">
+        <div className="z-0 fixed h-screen w-full bg-gradient-to-b from-[rgba(63,76,119,1)] to-[rgba(32,38,57,1)]">
+          <div className="h-full w-full topography-pattern"/>
+        </div>
+        <div className="z-10 w-full">
+          <NavBar refs={{home: homeRef, about: aboutRef, projects: projectsRef, contact: contactRef }}/>
+          <Hero ref={homeRef}/>
+          <About ref={aboutRef}/>
+          <Projects ref={projectsRef}/>
+          <Contact ref={contactRef}/>
+          <SocialsBar/>
+        </div>
       </main>
     </>
   );
