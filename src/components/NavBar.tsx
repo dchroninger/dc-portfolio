@@ -35,7 +35,7 @@ export const NavBar = ({refs}: NavBarProps) => {
   }, [refs.about, refs.contact, refs.home, refs.projects, path])
 
   return (
-    <div className="fixed flex items-center justify-center gap-12 px-4 pt-4">
+    <div className="z-20 fixed flex items-center justify-center gap-12 px-4 pt-4">
       <NavItem title="Home" hash="#home"/>
       <NavItem title="About" hash="#about"/>
       <NavItem title="Projects" hash="#projects"/>

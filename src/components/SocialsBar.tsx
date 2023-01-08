@@ -11,8 +11,10 @@ const SocialIcon = ({url, children}: SocialIconProps) => (<div
   </IconContext.Provider>
 </div>);
 
-export const SocialsBar = () => (<div className="container fixed bottom-3 right-6 w-40 h-12 flex justify-between items-center">
-  <SocialIcon url="https://www.twitter.com"><FiTwitter/></SocialIcon>
-  <SocialIcon url="https://www.github.com"><FiGithub/></SocialIcon>
-  <SocialIcon url="https://www.google.com"><FiBookOpen/></SocialIcon>
-</div>);
+export const SocialsBar = () => (
+  <div className="container fixed bottom-3 right-6 w-40 h-12 flex justify-between items-center">
+    <SocialIcon url="https://www.twitter.com"><FiTwitter/></SocialIcon>
+    <SocialIcon url="https://www.github.com"><FiGithub/></SocialIcon>
+    <SocialIcon url="https://www.google.com"><FiBookOpen/></SocialIcon>
+  </div>
+);
