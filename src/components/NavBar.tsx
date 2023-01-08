@@ -5,7 +5,6 @@ import {useRouter} from "next/router";
 
 const NavItem = ({title, hash}: NavItemProps) => {
   const router = useRouter();
-  console.log(router.asPath)
 return (
     <div className="hover:cursor-pointer"
          onClick={()=>router.push({pathname: "/", hash: hash})}>

@@ -1,7 +1,8 @@
 import {type NextPage} from "next";
 import Head from "next/head";
 import React, {useRef} from "react";
-import {About, Contact, Hero, NavBar, Projects, SocialsBar} from "../components";
+import {NavBar, SocialsBar} from "../components";
+import {About, Contact, Hero, Projects} from "../sections";
 
 const Home: NextPage = () => {
   const homeRef = useRef<HTMLDivElement>(null);
