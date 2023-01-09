@@ -6,6 +6,7 @@ import {About, Contact, Hero, Projects} from "../sections";
 import {useIsInViewport} from "../hooks/useIsVisibleInViewport";
 import {useRouter} from "next/router";
 import {scrollTo} from "../utils/scroll";
+import {Section} from "../types";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -21,7 +22,7 @@ const Home: NextPage = () => {
   const isAboutInViewport = useIsInViewport(aboutRef);
   const isHomeInViewport = useIsInViewport(homeRef);
 
-  const [activeSection, setActiveSection] = React.useState("home");
+  const [activeSection, setActiveSection] = React.useState<Section>("home");
 
   useEffect(() => {
     if (isHomeInViewport) setActiveSection("home");
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
   }, [isContactInViewport, isProjectsInViewport, isAboutInViewport, isHomeInViewport]);
 
   useEffect(() => {
+    console.log(activeSection);
     //TODO: Scrolling should update the URL hash, while clicking should ALSO update the hash.
     // When scroll controls the hash currently, clicking can't override it.
     //if(path.split("#")[1] !== activeSection) router.push({pathname: "/", hash: activeSection});
@@ -67,7 +69,7 @@ const Home: NextPage = () => {
         <div className="z-0 fixed h-screen w-full bg-gradient-to-b from-[rgba(63,76,119,1)] to-[rgba(32,38,57,1)]">
           <div className="h-full w-full topography-pattern"/>
         </div>
-        <NavBar refs={{home: homeRef, about: aboutRef, projects: projectsRef, contact: contactRef}}/>
+        <NavBar active={activeSection} refs={{home: homeRef, about: aboutRef, projects: projectsRef, contact: contactRef}}/>
         <SocialsBar/>
         <div className="z-10 w-screen h-screen overflow-y-scroll snap-y snap-mandatory">
           <div className="h-full w-full mb-1 snap-always snap-center">
